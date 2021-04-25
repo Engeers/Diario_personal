@@ -60,7 +60,7 @@ int login_menu()
 	system("cls||clear");
 
 	// Para que no se sienta la espera.
-	printf("Empezando carga...\n");
+	printf("Cargando...\n");
 	system_loading(time);
 
 	/**+-+-+-+-+-+-Empieza el menu+-+-+-+-+-+- */
@@ -70,35 +70,30 @@ int login_menu()
 		system("cls||clear");
 
 		if ((options <= 0 && i != 3) || options > 5)
-			printf("Heyyy, debes eligir una opcion correcta!!!\n"
+			printf("Debes eligir una opcion correcta!!!\n"
 				   "Porque, pues te quedan %zu intentos.\n",
 				   i);
 
 		printf("\n\tSeleccione una opcion:  \n"
-			   "\n\t1- Inventario \n"
-			   "\t2- Compras    \n"
-			   "\t3- Ventas     \n"
-			   "\t4- Contabilidad\n"
-			   "\t5- Salir \n"); // El usuario saldra cuando presione 5.
+			   "\n\t1- Crear notas \n"
+			   "\t2- Editar notas   \n"
+			   "\t3- Historial      \n"
+			   "\t4- Salir \n"); // El usuario saldra cuando presione 5.
 		scanf(" %d", &options);
 		getchar();
 
-		if (options >= INVENTARIO && options <= SALIR)
+		if (options >= CREAR_NOTAS && options <= SALIR)
 			break;
 	}
 
 	switch (options)
 	{
-	case INVENTARIO:
-		if (inventory_menu())
+	case CREAR_NOTAS:
 			return login_menu();
-	case COMPRAS:
-			return compras_menu();
-	case VENTAS:
-		break; //return ventas_menu();
-	case CONTABILIDAD:
-		return contabilidad_menu();
-		
+	case EDITAR_NOTAS:
+    break;
+	case HISTORIAL:
+		break; //return login_menu();
 	case SALIR:
 		fflush(stdout);
 		system("cls||clear");
@@ -130,7 +125,7 @@ int login_user()
 	system_loading(time);
 	do
 	{ /**Mientras el usuario no entre una opcion valida el loop se repetira. */
-		printf("\n\t\t\t\aHaz ingresado a la plataforma de Colmado Hackeando la NASA\n"
+		printf("\n\t\t\t\aHaz ingresado al Diario/Notas\n"
 			   "\tSi ya estas registrado ingresa (2).\n"
 			   "\tSi eres nuevo ingresa (1).\n"
 			   "\t(1) Registrarse.\n"
@@ -140,7 +135,7 @@ int login_user()
 		getchar();
 		system("cls||clear");
 
-		/**Imprime al usuario q coga una opcion correcta. */
+		/**Imprime al usuario que escoga una opcion correcta. */
 		if (temp > 2)
 			printf("Por favor elige una opcion correta.\n");
 	} while (temp > 2);
@@ -234,8 +229,8 @@ void system_loading(int time)
 		if (i % 25 == 0)
 		{
 			fflush(stdout);
-			printf("Carga %zu%% completada.\r", i); /* Ahora hace 
-			esencia con el nombre, jajaja. */
+			printf("Carga %zu%% completada.\r", i); /* impresion de 
+			esencia con el nombre */
 		}
 		else
 			continue;

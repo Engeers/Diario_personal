@@ -10,7 +10,7 @@
  */
 #ifndef LOGIN_H //LOGIN_H
 #define LOGIN_H
-
+#include <stdbool.h>
 enum menu_opciones
 {
     CREAR_NOTAS = 1,

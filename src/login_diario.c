@@ -8,12 +8,13 @@
 #include <unistd.h>
 #endif //__WIN32
 #include "../include/login_diario.h"
+#include <stdbool.h>
 
-
-// Usuario actual que esta ejecutando el programa.
+//El usuario actual que esta ejecutando el programa.
 static struct actual_user actual_user;
+enum menu_opciones;
 
-// Tiempo que durara el copilador parado.
+//El liempo que durara el copilador parado.
 const short time = 2;
 
 #define LONGITUD 50
@@ -89,15 +90,15 @@ int login_menu()
 	switch (options)
 	{
 	case CREAR_NOTAS:
-			return login_menu();
-	case EDITAR_NOTAS:
-    break;
+    break; //return login_menu();
+	case EDIT_NOTAS:
+    break; //return login_menu();
 	case HISTORIAL:
 		break; //return login_menu();
 	case SALIR:
 		fflush(stdout);
 		system("cls||clear");
-		printf("Volviendo...\n");
+		printf("Regresando...\n");
 		exit(0);
 	default:
 		fprintf(stderr, "Verifica que hayas ingresado una contraseña valida o "
@@ -154,10 +155,6 @@ int login_user()
 		printf("Password: ");
 		set_password(actual_user.password);
 
-		printf("\nEs admin: ");
-		scanf(" %d", &actual_user.is_admin);
-		getchar();
-
 		system("clear||cls");
 		// Anade al usuario.
 		add_user(actual_user.username, actual_user.password, actual_user.is_admin);
@@ -171,7 +168,6 @@ int login_user()
 	case 2: // Logearse.
 		for (size_t i = 3; i > 0;)
 		{
-			// TODO: #13 falta un encabezado q le diga al usuario q hacer.
 			printf("\t\t\aHola! Estas actualmenteen en el login. Ingresa tus "
 				   "credenciales para poder ingresar al sistema!\n\n");
 

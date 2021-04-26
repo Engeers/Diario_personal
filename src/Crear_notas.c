@@ -10,47 +10,47 @@
 #include "../include/login_diario.h"
 #include <stdbool.h>
 #include "../include/Crear_notas.h"
-struct Crear_notas;
-
+#define MAX 1000
+struct crear_notas notas[MAX];
+void save_notas()
+{
+    for (size_t i = 0; i < MAX; i++)
+    {
+        printf("Nuevo diario\n"
+        "%s\n %s\n %f\n",notas[i].titulo,notas[i].cuerpo,notas[i].fecha,
+        "\n ====================");
+    }
+    
+}
 
     bool crear_notas()
 {
     char _temp = true;
     char temp;
     char titulo[100]; //cantidad maxima del titulo// 
-    char cuerpo[1000]; //cuerpocon maximo de escritura 
+    char cuerpo[1000]; //cuerpo con maximo de escritura 
     float fecha[10]; // valor limite de la fecha en flotante
 
     clear_screen();
-    printf("Titulo/Nombre: ");
+    for (size_t i = 0; i < MAX; i++)
+    {
+        printf("Titulo/Nombre: ");
     fgets(titulo, sizeof(titulo), stdin);
     titulo[strcspn(titulo, "\n")] = 0;
+    strcpy(notas[i].titulo,titulo);
 
     printf("Cuerpo/Notas: ");
-    fgets(temp, sizeof(temp), stdin);
-    sscanf(temp, "%u", &precio);
+    fgets(cuerpo, sizeof(cuerpo), stdin);
+    cuerpo[strcspn(cuerpo, "\n")] = 0;
+    strcpy(notas[i].cuerpo,cuerpo);
 
     printf("Cantidad del producto: ");
-    fgets(temp, sizeof(temp), stdin);
-    sscanf(temp, "%u", &cantidad);
-
-    for (size_t i = 0; i < MAX_COMPRAS && _temp; i++)
-    {
-        if (!suplir_producto[i].full)
-        {
-            suplir_producto[i].full = true;
-            suplir_producto[i].id = i + 1;
-            strcpy(suplir_producto->producto_titulo, titulo);
-            suplir_producto[i].precio = precio;
-            suplir_producto[i].cantidad = cantidad;
-
-            if (!save_product(suplir_producto[i].producto_titulo,
-                              suplir_producto[i].precio, suplir_producto[i].cantidad))
-                fprintf(stderr, "problema dectetado.\n");
-
-            _temp = false;
-        }
+    fgets(fecha, sizeof(fecha), stdin);
+    fecha[strcspn(fecha, "\n")] = 0;
+    strcpy(notas[i].fecha,fecha);
     }
+
+
 
     clear_screen();
     printf("Deseas arreglar algo?\n"
@@ -63,5 +63,4 @@ struct Crear_notas;
             return false;
 
     return false;
-}
 }

@@ -9,7 +9,7 @@
 #endif //__WIN32
 #include "../include/login_diario.h"
 #include <stdbool.h>
-#include "../include/Crear_notas.h"
+#include "../include/crear_notas.h"
 //El usuario actual que esta ejecutando el programa.
 static struct actual_user actual_user;
 enum menu_opciones;
@@ -90,11 +90,13 @@ int login_menu()
 	switch (options)
 	{
 	case CREAR_NOTAS:
-    break; //return login_menu();
+		crear_notas();
+    break; 
 	case EDIT_NOTAS:
-    break; //return login_menu();
+    break; //nada por el momento
 	case HISTORIAL:
-		break; //return login_menu();
+		save_notas();
+		break; 
 	case SALIR:
 		fflush(stdout);
 		system("cls||clear");
@@ -168,7 +170,7 @@ int login_user()
 	case 2: // Logearse.
 		for (size_t i = 3; i > 0;)
 		{
-			printf("\t\t\aHola! Estas actualmenteen en el login. Ingresa tus "
+			printf("\t\t\aHola! Estas actualmente en en el login. Ingresa tus "
 				   "credenciales para poder ingresar al sistema!\n\n");
 
 			if (i != 3 && i >= 1)

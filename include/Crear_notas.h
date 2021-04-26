@@ -23,3 +23,9 @@ struct crear_notas
     char cuerpo[1000];
     float fecha[10];
 };
+
+/**
+ * @brief esta funcion me va a imprimir en el historial
+ * 
+ */
+void save_notas();

@@ -19,6 +19,13 @@ enum menu_opciones
     SALIR
 };
 
+struct User
+{
+    char *nombre_user;
+    char *pass;
+};
+
+
 /**
  * @brief struct donde se guardara el actual usuario. Si se loguea se cargaron los 
  * datos que coincidan en la database.

@@ -15,9 +15,9 @@
  * @return true me va abrir todo correctamente si no hay un valor fuera del codigo
  * @return false no se va a ejecutar si introduces el valor indicado.
  */
-bool Crear_notas();
+bool crear_notas();
 
-struct Crear_notas 
+struct crear_notas 
 {
     char titulo[100];
     char cuerpo[1000];

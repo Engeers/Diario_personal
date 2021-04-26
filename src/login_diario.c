@@ -9,7 +9,7 @@
 #endif //__WIN32
 #include "../include/login_diario.h"
 #include <stdbool.h>
-
+#include "../include/Crear_notas.h"
 //El usuario actual que esta ejecutando el programa.
 static struct actual_user actual_user;
 enum menu_opciones;
@@ -60,8 +60,8 @@ int login_menu()
 	fflush(stdout);
 	system("cls||clear");
 
-	// Para que no se sienta la espera.
-	printf("Cargando...\n");
+	// mensaje de espera en la carga.
+	printf("Por favor espere...\n");
 	system_loading(time);
 
 	/**+-+-+-+-+-+-Empieza el menu+-+-+-+-+-+- */
@@ -79,7 +79,7 @@ int login_menu()
 			   "\n\t1- Crear notas \n"
 			   "\t2- Editar notas   \n"
 			   "\t3- Historial      \n"
-			   "\t4- Salir \n"); // El usuario saldra cuando presione 5.
+			   "\t4- Salir \n"); // El usuario saldra cuando presione 4.
 		scanf(" %d", &options);
 		getchar();
 
@@ -98,7 +98,7 @@ int login_menu()
 	case SALIR:
 		fflush(stdout);
 		system("cls||clear");
-		printf("Regresando...\n");
+		printf("Saliendo...\n");
 		exit(0);
 	default:
 		fprintf(stderr, "Verifica que hayas ingresado una contraseña valida o "
@@ -122,11 +122,11 @@ int login_user()
 	int chances = 0;
 
 	// Para que no se sienta la espera.
-	printf("Empezando sistema de carga...\n");
+	printf("Iniciando...\n");
 	system_loading(time);
 	do
 	{ /**Mientras el usuario no entre una opcion valida el loop se repetira. */
-		printf("\n\t\t\t\aHaz ingresado al Diario/Notas\n"
+		printf("\n\t\t\t\aLogin de Diario/Notas\n"
 			   "\tSi ya estas registrado ingresa (2).\n"
 			   "\tSi eres nuevo ingresa (1).\n"
 			   "\t(1) Registrarse.\n"
@@ -138,7 +138,7 @@ int login_user()
 
 		/**Imprime al usuario que escoga una opcion correcta. */
 		if (temp > 2)
-			printf("Por favor elige una opcion correta.\n");
+			printf("Selecciona una opcion correcta.\n");
 	} while (temp > 2);
 
 	/**Dependiendo del valor en temp, el usuario se logeara o registrara. */
@@ -146,18 +146,18 @@ int login_user()
 	{
 	case 1: // Registrarse.
 
-		printf("\t\t\aHola! Aca podras registrarte. Por favor llena los siguientes campos.\n"
-			   "Username: ");
+		printf("\t\t\aAqui podras registrarte. Ingrese lo siguiente:\n"
+			   "Nombre: ");
 		fgets(actual_user.username, sizeof(actual_user.username), stdin);
 		// Cambiar \n con \0
 		actual_user.username[strcspn(actual_user.username, "\n")] = 0;
 		(void)get_username();
-		printf("Password: ");
+		printf("Clave: ");
 		set_password(actual_user.password);
 
 		system("clear||cls");
 		// Anade al usuario.
-		add_user(actual_user.username, actual_user.password, actual_user.is_admin);
+		//add_user(actual_user.username, actual_user.password, actual_user.is_admin);
 
 		// Luego entra en un blucle hasta que presione la letra de salir.
 		for (; login_menu();)
@@ -177,15 +177,15 @@ int login_user()
 					   "Intentos restantes: %zu \n\n",
 					   i);
 
-			printf("\t\aUsername: ");
+			printf("\t\aNombre: ");
 			fgets(actual_user.username, sizeof(actual_user.username), stdin);
 			// Cambiar \n con \0
 			actual_user.username[strcspn(actual_user.username, "\n")] = 0;
 
-			printf("\t\aPassword: ");
+			printf("\t\aClave: ");
 			set_password(actual_user.password);
 
-			temp_validate = validate(actual_user.username, actual_user.password);
+			/**temp_validate = validate(actual_user.username, actual_user.password);
 			if (!temp_validate)
 			// TODO: mostrar el login menu y/o mostrar un mensaje de que se ha logeado.
 			{
@@ -193,7 +193,7 @@ int login_user()
 					;
 				return 0;
 			}
-			else if (temp_validate == -1)
+			else if (temp_validate == -1)//esto valida si estas loguearte pero no estabas logueado por 1ra vez.
 			{
 				system("cls||clear");
 				printf("\t\t\aUps! Esta es la primera vez que estas ejucutando el programa.\n\n"
@@ -207,7 +207,7 @@ int login_user()
 				--i;
 			}
 			// Limpia la pantalla para la segunda vuelta.
-			system("cls||clear");
+			system("cls||clear"); */
 		}
 	}
 
@@ -225,7 +225,7 @@ void system_loading(int time)
 		if (i % 25 == 0)
 		{
 			fflush(stdout);
-			printf("Carga %zu%% completada.\r", i); /* impresion de 
+			printf("Cargando.. %zu%% .\r", i); /* impresion de 
 			esencia con el nombre */
 		}
 		else

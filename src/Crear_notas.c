@@ -13,7 +13,7 @@
 struct Crear_notas;
 
 
-    bool Crear_productos()
+    bool crear_notas()
 {
     char _temp = true;
     char temp;

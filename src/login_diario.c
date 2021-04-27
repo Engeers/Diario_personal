@@ -90,7 +90,7 @@ int login_menu()
 	switch (options)
 	{
 	case CREAR_NOTAS:
-		crear_notas();
+		crear_nots();
     break; 
 	case EDIT_NOTAS:
     break; //nada por el momento

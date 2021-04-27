@@ -15,7 +15,6 @@
 #include "../include/login_diario.h"
 #include <stdbool.h>
 #include "../include/Crear_notas.h"
-typedef struct products Product;
 
 int main(int argc, char *const argv[])
 {

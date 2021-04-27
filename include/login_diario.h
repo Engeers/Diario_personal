@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2021
  *  Este es un proyecto simple que mostrara las notas oun diario para que un usuario guarde info.
  */
-#include "../include/crear_notas.h"
 #ifndef LOGIN_H //LOGIN_H
 #define LOGIN_H
 #include <stdbool.h>

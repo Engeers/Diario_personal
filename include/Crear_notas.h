@@ -1,9 +1,9 @@
 /**
  * @file Crear_notas.h
- * @author your name (you@domain.com)
+ * @author your name (Engeers Odalis Rossis)
  * @brief 
  * @version 0.1
- * @date 2021-04-25
+ * @date 2021-04-22
  * 
  * @copyright Copyright (c) 2021
  * 

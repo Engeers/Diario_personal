@@ -3,7 +3,7 @@
  * @author your name (Engeers O. Rossis)
  * @brief  
  * @version 0.1
- * @date 2021-04-24
+ * @date 2021-04-22
  * 
  * @copyright Copyright (c) 2021
  *  Este es un proyecto simple que mostrara las notas oun diario para que un usuario guarde info.

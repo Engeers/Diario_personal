@@ -18,6 +18,7 @@ char temp;
 char titulo[100];
 char cuerpo[1000];
 char year[sizeof(double)];
+char line[sizeof(double)];
 char day[31];
 char month[12];
 void save_notas()
@@ -39,6 +40,7 @@ bool crear_nots()
     char titulo[100];  //cantidad maxima del titulo//
     char cuerpo[1000]; //cuerpo con maximo de escritura
     int year[sizeof(double)];
+    char line[sizeof(double)];
     char day[31];
     char month[12];
     int opc; //variable para opcion de salir de crear nota
@@ -53,21 +55,21 @@ bool crear_nots()
             strcpy(notas[i].titulo, titulo);
 
             printf("Cuerpo/Notas: ");
-            fgets(cuerpo, sizeof(cuerpo), stdin);
+            fgets(line, sizeof(line), stdin);
             cuerpo[strcspn(cuerpo, "\n")] = 0;
             strcpy(notas[i].cuerpo, cuerpo);
 
             printf("year: ");
-            fgets(year, sizeof(year), stdin);
-            sscanf(year, "%d",year);
+            fgets(line, sizeof(line), stdin);
+            sscanf(line, "%d",&year);
 
             printf("day: ");
             fgets(day, sizeof(day), stdin);
-            sscanf(day, "%d",day);
+            sscanf(day, "%d",&day);
 
             printf("month: ");
-            fgets(month, sizeof(month), stdin);
-            sscanf(month, "%d",month);
+            fgets(line, sizeof(line), stdin);
+            sscanf(line, "%d",&month);
 
             printf("si quieres continuar presiona 1\n");
             printf("Si no quieres continuar presiona 0\n");

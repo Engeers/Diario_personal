@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "crear_notas.h": "c"
+        "crear_notas.h": "c",
+        "stdbool.h": "c"
     }
 }

@@ -11,6 +11,8 @@
 #include "../include/login_diario.h"
 #include <stdbool.h>
 #include "../include/crear_notas.h"
+#include "../include/users.h"
+
 //El usuario actual que esta ejecutando el programa.
 static struct actual_user actual_user;
 enum menu_opciones;
@@ -31,22 +33,18 @@ void set_password(char *const password)
 			return;
 		}
 		else if (c == 8)
-
-            {
-                if (i > 0)
-                {
-                    printf("\b \b"); //mueve el cursor hacia la izquierda
-                }
-            }
-            else if (i < LONGITUD)
-                        
-                {
-                    printf("*");
-                    password[i] = c;
-                   
-                }
-    }
-
+		{
+			if (i > 0)
+			{
+				printf("\b \b"); //mueve el cursor hacia la izquierda
+			}
+		}
+		else if (i < LONGITUD)
+		{
+			printf("*");
+			password[i] = c;
+		}
+	}
 }
 
 // *-*-*-*-*-*-*-*-*-*-*-*- Login para el Menu de notas *-*-*-*-*-*-*-*-*-*-*-*-
@@ -93,13 +91,13 @@ int login_menu()
 	case CREAR_NOTAS:
 		if (!crear_nots())
 			login_menu();
-    break; 
+		break;
 	case EDIT_NOTAS:
 		editar_notas();
-    break; //nada por el momento
+		break; //nada por el momento
 	case HISTORIAL:
 		save_notas();
-		break; 
+		break;
 	case SALIR:
 		fflush(stdout);
 		system("cls||clear");
@@ -162,7 +160,7 @@ int login_user()
 
 		system("clear||cls");
 		// Anade al usuario.
-		//add_user(actual_user.username, actual_user.password, actual_user.is_admin);
+		add_user(actual_user.username, actual_user.password);
 
 		// Luego entra en un blucle hasta que presione la letra de salir.
 		for (; login_menu();)
@@ -190,29 +188,19 @@ int login_user()
 			printf("\t\aClave: ");
 			set_password(actual_user.password);
 
-			/**temp_validate = validate(actual_user.username, actual_user.password);
-			if (!temp_validate)
-			// TODO: mostrar el login menu y/o mostrar un mensaje de que se ha logeado.
+			if (validate_from_file(actual_user.username, actual_user.password))
 			{
 				for (; login_menu();)
 					;
 				return 0;
 			}
-			else if (temp_validate == -1)//esto valida si estas loguearte pero no estabas logueado por 1ra vez.
-			{
-				system("cls||clear");
-				printf("\t\t\aUps! Esta es la primera vez que estas ejucutando el programa.\n\n"
-					   "\tPor favor registrarse primero.\n"
-					   "\tPresione cualquier tecla para finalizar la ejecucion...\n");
-				getchar();
-				exit(-1);
-			}
 			else
 			{
+				fprintf(stderr, "\aNo apareces registrado!\n");
 				--i;
 			}
 			// Limpia la pantalla para la segunda vuelta.
-			system("cls||clear"); */
+			system("cls||clear");
 		}
 	}
 

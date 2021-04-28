@@ -14,7 +14,7 @@
 #include "../include/login_diario.h"
 #include "../include/login_diario.h"
 #include <stdbool.h>
-#include "../include/Crear_notas.h"
+#include "../include/crear_notas.h"
 
 int main(int argc, char *const argv[])
 {
@@ -35,43 +35,6 @@ int main(int argc, char *const argv[])
 		login_menu();
 	else
 		login_user();
-
-#if 0  //COMMENTED
-	add_user("djose1164", "1234", 1);
-	int status = validate("djose1164", "1234");
-	switch (status)
-	{
-	case admin:
-		printf("Eres admin.\n");
-		short temp = save_product("Lata de maiz", 35, 5);
-		temp = save_product("Lata de maiz2", 35, 5);
-		temp = save_product("Lata de maiz3", 35, 5);
-		temp = save_product("Lata de maiz4", 35, 5);
-		temp = save_product("Lata de maiz5", 35, 5);
-		if (temp)
-		{
-			printf("The product have been saved successfully!\n");
-			report_inventory();
-			edit_product(product.id, product.product_name, product.sell_price, 
-						 product.available_quantity);
-			printf("\n*-*-*-*-*-After Update.*-*-*-*-*-\n");
-			report_inventory();
-		}
-		else
-			printf("It looks like the product couldn't be saved. "
-				   "Send an issue about this bug.\n");
-		break;
-	case guest:
-		printf("Eres invitado.\n");
-		break;
-	case not_found:
-		printf("Verifica que hayas ingresado los datos correctamente.\n");
-		break;
-	default:
-		printf("Error! Put a issue well explained about this bug.\n");
-		break;
-	}
-#endif //COMMENTED
 
 	return 0;
 }

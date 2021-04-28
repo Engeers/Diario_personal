@@ -5,6 +5,7 @@
 #ifdef __WIN32
 #include <windows.h> /* Windows dectetado. */
 #include <conio.h>
+#else
 #include <unistd.h>
 #endif //__WIN32
 #include "../include/login_diario.h"
@@ -22,7 +23,7 @@ const short time = 2;
 void set_password(char *const password)
 {
 	char c;
-	for (size_t i = 0; (c = getch()); ++i)
+	for (size_t i = 0; (c = getchar()); ++i)
 	{
 		if (c == '\n' || c == '\r')
 		{
@@ -90,7 +91,8 @@ int login_menu()
 	switch (options)
 	{
 	case CREAR_NOTAS:
-		crear_nots();
+		if (!crear_nots())
+			login_menu();
     break; 
 	case EDIT_NOTAS:
     break; //nada por el momento
@@ -201,7 +203,7 @@ int login_user()
 				printf("\t\t\aUps! Esta es la primera vez que estas ejucutando el programa.\n\n"
 					   "\tPor favor registrarse primero.\n"
 					   "\tPresione cualquier tecla para finalizar la ejecucion...\n");
-				getch();
+				getchar();
 				exit(-1);
 			}
 			else

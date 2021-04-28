@@ -11,13 +11,14 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
-struct crear //struct 
+struct crear //struct
 {
     char titulo[100];
     char cuerpo[1000];
-    int year[10];
-    int day[365];
-    int month[12];
+    int year;
+    int day;
+    int month;
+    bool lleno; // true lleno; false vacio.
 };
 
 /**

@@ -1,9 +1,18 @@
+/************************************************************/
+/*           Programacion para mecatronicos                 */
+/*  Nombre: Engeers Odalis Rossis de la cruz                */
+/*  Matricula: 2020-10573                                   */
+/*  Seccion: Miercoles                                      */
+/*  Nombre proyecto final sistema de gestion de Diario/notas*/
+/*  Fecha: 22/04/2021                                       */
+/************************************************************/
+
 /**
  * @file main.c
  * @author your name Engeers O. Rossis De la Cruz
  * @brief  
  * @version 0.1
- * @date 2021-04-25
+ * @date 2021-04-22
  * 
  * @copyright Copyright (c) 2021
  * 
@@ -27,7 +36,7 @@ int main(int argc, char *const argv[])
 						// y la letra cambia el color de letra
 						// https://www.geeksforgeeks.org/how-to-print-colored-text-in-c/
 #endif // __linux__
-	system("cls||clear");
+	system("cls||clear");//limpiar pantalla
 	/**
 	 * TODO: Hacer algo.
 	 */

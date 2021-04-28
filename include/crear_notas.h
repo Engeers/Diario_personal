@@ -1,6 +1,6 @@
 /**
  * @file Crear_notas.h
- * @author your name (Engeers Odalis Rossis)
+ * @author your name: Engeers Odalis Rossis
  * @brief 
  * @version 0.1
  * @date 2021-04-22
@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
-struct crear //struct
+struct crear //struct de crear para los diferentes campos
 {
     char titulo[100];
     char cuerpo[1000];

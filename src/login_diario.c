@@ -3,7 +3,7 @@
 #include <string.h>
 //#include <stdint.h>
 #ifdef __WIN32
-#include <windows.h> /* Windows dectetado. */
+#include <windows.h> /*se ha Windows dectetado. */
 #include <conio.h>
 #else
 #include <unistd.h>
@@ -36,7 +36,7 @@ void set_password(char *const password)
 		{
 			if (i > 0)
 			{
-				printf("\b \b"); //mueve el cursor hacia la izquierda
+				printf("\b \b"); //mueve el cursor hacia la direccion izquierda
 			}
 		}
 		else if (i < LONGITUD)
@@ -77,7 +77,7 @@ int login_menu()
 		printf("\n\tSeleccione una opcion:  \n"
 			   "\n\t1- Crear notas \n"
 			   "\t2- Editar notas   \n"
-			   "\t3- Historial      \n"
+			   "\t3- Historial de notas     \n"
 			   "\t4- Salir \n"); // El usuario saldra cuando presione 4.
 		scanf(" %d", &options);
 		getchar();
@@ -86,7 +86,7 @@ int login_menu()
 			break;
 	}
 
-	switch (options)
+	switch (options) //switch para las opciones en case 
 	{
 	case CREAR_NOTAS:
 		if (!crear_nots())
@@ -113,7 +113,7 @@ int login_menu()
 }
 
 // *-*-*-*-*-*-*-*-*-*-*-*- Login para el Menu de user *-*-*-*-*-*-*-*-*-*-*-*-
-/** IMPORTANT: Esta debe ser la primiera pantalla que el usario vea. */
+/** IMPORTANT: Primiera pantalla que el usario vea. */
 
 int login_user()
 {
@@ -130,8 +130,8 @@ int login_user()
 	do
 	{ /**Mientras el usuario no entre una opcion valida el loop se repetira. */
 		printf("\n\t\t\t\aLogin de Diario/Notas\n"
-			   "\tSi ya estas registrado ingresa (2).\n"
-			   "\tSi eres nuevo ingresa (1).\n"
+			   "\tSi ya estas registrado solo ingresa (2).\n"
+			   "\tSi eres un nuevo usuario ingresa (1).\n"
 			   "\t(1) Registrarse.\n"
 			   "\t(2) Logearse.\n"
 			   "\tOpcion: ");
@@ -175,7 +175,7 @@ int login_user()
 				   "datos para iniciar\n\n");
 
 			if (i != 3 && i >= 1)
-				printf("\t\t\aUyyyyyy! Tus datos no se encuetran en la base de datos.\n"
+				printf("\t\t\aUyyyyyy! Al parecer datos no se encuetran registrados.\n"
 					   "\t\aAsegurate de haber ingresado tus datos correctamente. "
 					   "Intentos restantes: %zu \n\n",
 					   i);

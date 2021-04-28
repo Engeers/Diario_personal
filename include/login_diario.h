@@ -6,7 +6,8 @@
  * @date 2021-04-22
  * 
  * @copyright Copyright (c) 2021
- *  Este es un proyecto simple que mostrara las notas oun diario para que un usuario guarde info.
+ *  Este es un proyecto simple mostrara las notas oun diario para que un usuario guarde informacion
+ *  pero solo mientras se ejecuta.
  */
 #ifndef LOGIN_H //LOGIN_H
 #define LOGIN_H
@@ -19,7 +20,7 @@ enum menu_opciones
     SALIR
 };
 /**
- * @brief guardara notas en el historial 
+ * @brief me permitira guardar informacion en el historial de notas 
  * 
  */
 void save_notas();

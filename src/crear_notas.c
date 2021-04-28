@@ -28,10 +28,10 @@ enum
 
 struct crear notas[MAX];
 
-/**Para almacenar el input del usuario con fgets. */
+/*Para almacenar el input del usuario con fgets. */
 char line[sizeof(double)];
 
-void save_notas()
+void save_notas() /*llamada a save_notas luego limpiar pantalla y for para establecer parametros.*/
 {
     clear_screen();
 
@@ -46,7 +46,7 @@ void save_notas()
     }
 }
 
-bool crear_nots()
+bool crear_nots() /* Use bool para mi funcion para crear notas*/
 {
     char line[sizeof(double)];
     int opc; //variable para opcion de salir de crear nota
@@ -55,7 +55,8 @@ bool crear_nots()
     {
         clear_screen();
 
-        /**Verifica que la estructura este vacia. */
+        /** Aqui se verifica que la estructura este vacia. */
+        /**Comienza la ejecucion de crear */
         if (!notas[i].lleno)
         {
             printf("Titulo/Nombre: ");
@@ -78,10 +79,10 @@ bool crear_nots()
             fgets(line, sizeof(line), stdin);
             sscanf(line, "%d", &notas[i].month);
 
-            notas[i].lleno = true;
+            notas[i].lleno = true; /*si es true estara lleno.*/
         }
 
-        printf("si quieres continuar presiona 1\n");
+        printf("si quieres continuar presiona 1\n"); /*impresion para indicar que tecla presionar*/
         printf("Si no quieres continuar presiona 0\n");
         scanf("%d", &opc);
         getchar();
@@ -107,11 +108,11 @@ bool crear_nots()
 
 //! Editar notas
 
-void editar_notas()
+void editar_notas() //llamada a funcion editar notas
 {
     clear_screen();
 
-    /**Almacenara la opcion del usuario. */
+    /**Aqui almacenara la opcion del usuario. */
     unsigned eleccion;
     /**Pedira el titulo de una estructura. */
     printf("Ingrese el titulo de la nota a editar: ");
@@ -126,28 +127,28 @@ void editar_notas()
      */
     for (size_t i = 0; i < MAX; i++)
     {
-        /**Verifica que haya una estructura llena. */
+        /**Aqui se verifica que haya una estructura llena. */
         if (notas[i].lleno)
         {
-            /**Verifica que los titulos sean iguales. */
+            /**Aqui se verifica que los titulos sean iguales. */
             if (!strcmp(notas[i].titulo, line))
             {
-                /**Loop para q el input este dentro del rango 1-5. */
+                /** Este Loop para que el input que este dentro del rango 1 al 5. */
                 while (true)
                 {
-                    printf("Que quieres modificar: \n"
+                    printf("Que quieres modificar: \n" /*impresion de opciones de editar luego de poner el titulo que quiera*/
                            "1- Titulo.\n"
                            "2- Cuerpo.\n"
-                           "3- Anio.\n"
-                           "4- Mes.\n"
-                           "5- Dia.\n"
+                           "3- year.\n"
+                           "4- Month.\n"
+                           "5- Day.\n"
                            "Eleccion: ");
                     fgets(line, sizeof(line), stdin);
                     sscanf(line, "%u", &eleccion);
 
                     /**
                      * @brief Si la eleccion esta fuera de rango imprimira un mensaje,
-                     * notificandolo, y volvera a pedir el input.
+                     * notificandolo y volvera a pedir el input.
                      * 
                      */
                     if (eleccion < TITULO || eleccion > DIA)
@@ -164,7 +165,7 @@ void editar_notas()
 
                 clear_screen();
 
-                /**Vere que opcion elige el usuario. */
+                /**Vere que opcion elige el usuario, decir es decir que mostrara las opciones segun quiera elija */
                 switch (eleccion)
                 {
                 case TITULO:
@@ -174,25 +175,25 @@ void editar_notas()
 
                     break;
                 case CUERPO:
-                    printf("Cuerpo/Notas: ");
+                    printf("Notas/Cuerpo: ");
                     fgets(notas[i].cuerpo, sizeof(notas[i].cuerpo), stdin);
                     notas[i].cuerpo[strcspn(notas[i].cuerpo, "\n")] = 0;
                     break;
 
                 case ANIO:
-                    printf("year: ");
+                    printf(" Year: ");
                     fgets(line, sizeof(line), stdin);
                     sscanf(line, "%d", &notas[i].year);
                     break;
 
                 case DIA:
-                    printf("day: ");
+                    printf("Day: ");
                     fgets(line, sizeof(line), stdin);
                     sscanf(line, "%d", &notas[i].day);
                     break;
 
                 case MES:
-                    printf("month: ");
+                    printf("Month: ");
                     fgets(line, sizeof(line), stdin);
                     sscanf(line, "%d", &notas[i].month);
                     break;
@@ -203,7 +204,8 @@ void editar_notas()
 
                 clear_screen();
 
-                printf("\aModificacion exitosa!\n");
+                printf("\aModificacion guardada!\n"
+                "Presiona enter para volver");
                 getchar();
                 return (void)login_menu();
             }
@@ -213,5 +215,5 @@ void editar_notas()
     fprintf(stderr, "\aNo hay ninguna entrada de diaro!\n"
                     "Intenta anadir uno primero!\n");
     getchar();
-    return (void)login_menu();
+    return (void)login_menu(); // luego hago una llamada  me retornara al menu
 }

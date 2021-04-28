@@ -95,6 +95,7 @@ int login_menu()
 			login_menu();
     break; 
 	case EDIT_NOTAS:
+		editar_notas();
     break; //nada por el momento
 	case HISTORIAL:
 		save_notas();

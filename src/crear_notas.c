@@ -12,15 +12,24 @@
 #include "../include/crear_notas.h"
 #include <time.h>
 #define MAX 1000 // sera el maximo de caracteres soportados
+
+/**
+ * @brief Constantes para el submenu de editar notas.
+ * 
+ */
+enum
+{
+    TITULO = 1, /**Opcion para cambiar el titulo. */
+    CUERPO,     /**Opcion para editiar el cuerpo. */
+    ANIO,       /**Opcion para editar el anio. */
+    MES,        /**Opcion para modificar el mes. */
+    DIA         /**Para cambiar el dia. */
+};
+
 struct crear notas[MAX];
-char _temp = true;//mis variables locales
-char temp;
-char titulo[100];
-char cuerpo[1000];
-char year[sizeof(double)];
+
+/**Para almacenar el input del usuario con fgets. */
 char line[sizeof(double)];
-char day[31];
-char month[12];
 
 void save_notas()
 {
@@ -46,27 +55,31 @@ bool crear_nots()
     {
         clear_screen();
 
-        printf("Titulo/Nombre: ");
-        fgets(notas[i].titulo, sizeof(notas[i].titulo), stdin);
-        notas[i].titulo[strcspn(notas[i].titulo, "\n")] = 0;
+        /**Verifica que la estructura este vacia. */
+        if (!notas[i].lleno)
+        {
+            printf("Titulo/Nombre: ");
+            fgets(notas[i].titulo, sizeof(notas[i].titulo), stdin);
+            notas[i].titulo[strcspn(notas[i].titulo, "\n")] = 0;
 
-        printf("Cuerpo/Notas: ");
-        fgets(notas[i].cuerpo, sizeof(notas[i].cuerpo), stdin);
-        notas[i].cuerpo[strcspn(notas[i].cuerpo, "\n")] = 0;
+            printf("Cuerpo/Notas: ");
+            fgets(notas[i].cuerpo, sizeof(notas[i].cuerpo), stdin);
+            notas[i].cuerpo[strcspn(notas[i].cuerpo, "\n")] = 0;
 
-        printf("year: ");
-        fgets(line, sizeof(line), stdin);
-        sscanf(line, "%d", &notas[i].year);
+            printf("year: ");
+            fgets(line, sizeof(line), stdin);
+            sscanf(line, "%d", &notas[i].year);
 
-        printf("day: ");
-        fgets(line, sizeof(line), stdin);
-        sscanf(line, "%d", &notas[i].day);
+            printf("day: ");
+            fgets(line, sizeof(line), stdin);
+            sscanf(line, "%d", &notas[i].day);
 
-        printf("month: ");
-        fgets(line, sizeof(line), stdin);
-        sscanf(line, "%d", &notas[i].month);
+            printf("month: ");
+            fgets(line, sizeof(line), stdin);
+            sscanf(line, "%d", &notas[i].month);
 
-        notas[i].lleno = true;
+            notas[i].lleno = true;
+        }
 
         printf("si quieres continuar presiona 1\n");
         printf("Si no quieres continuar presiona 0\n");
@@ -90,4 +103,115 @@ bool crear_nots()
     }
 
     return -1; // Error.
+}
+
+//! Editar notas
+
+void editar_notas()
+{
+    clear_screen();
+
+    /**Almacenara la opcion del usuario. */
+    unsigned eleccion;
+    /**Pedira el titulo de una estructura. */
+    printf("Ingrese el titulo de la nota a editar: ");
+    fgets(line, sizeof(line), stdin);
+    line[strcspn(line, "\n")] = 0;
+
+    /**
+     * @brief Primera verificara que haya una estructura llena; cuando encuentre
+     * una llena verificara el titulo de ella con el titulo introducido por el
+     * usuario.
+     * 
+     */
+    for (size_t i = 0; i < MAX; i++)
+    {
+        /**Verifica que haya una estructura llena. */
+        if (notas[i].lleno)
+        {
+            /**Verifica que los titulos sean iguales. */
+            if (!strcmp(notas[i].titulo, line))
+            {
+                /**Loop para q el input este dentro del rango 1-5. */
+                while (true)
+                {
+                    printf("Que quieres modificar: \n"
+                           "1- Titulo.\n"
+                           "2- Cuerpo.\n"
+                           "3- Anio.\n"
+                           "4- Mes.\n"
+                           "5- Dia.\n"
+                           "Eleccion: ");
+                    fgets(line, sizeof(line), stdin);
+                    sscanf(line, "%u", &eleccion);
+
+                    /**
+                     * @brief Si la eleccion esta fuera de rango imprimira un mensaje,
+                     * notificandolo, y volvera a pedir el input.
+                     * 
+                     */
+                    if (eleccion < TITULO || eleccion > DIA)
+                    {
+                        clear_screen();
+                        printf("Elige una opcion correcta\n");
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                clear_screen();
+
+                /**Vere que opcion elige el usuario. */
+                switch (eleccion)
+                {
+                case TITULO:
+                    printf("Titulo/Nombre: ");
+                    fgets(notas[i].titulo, sizeof(notas[i].titulo), stdin);
+                    notas[i].titulo[strcspn(notas[i].titulo, "\n")] = 0;
+
+                    break;
+                case CUERPO:
+                    printf("Cuerpo/Notas: ");
+                    fgets(notas[i].cuerpo, sizeof(notas[i].cuerpo), stdin);
+                    notas[i].cuerpo[strcspn(notas[i].cuerpo, "\n")] = 0;
+                    break;
+
+                case ANIO:
+                    printf("year: ");
+                    fgets(line, sizeof(line), stdin);
+                    sscanf(line, "%d", &notas[i].year);
+                    break;
+
+                case DIA:
+                    printf("day: ");
+                    fgets(line, sizeof(line), stdin);
+                    sscanf(line, "%d", &notas[i].day);
+                    break;
+
+                case MES:
+                    printf("month: ");
+                    fgets(line, sizeof(line), stdin);
+                    sscanf(line, "%d", &notas[i].month);
+                    break;
+                default:
+                    fprintf(stderr, "Esto luce como un error!\n");
+                    exit(-1);
+                }
+
+                clear_screen();
+
+                printf("\aModificacion exitosa!\n");
+                getchar();
+                return (void)login_menu();
+            }
+        }
+    }
+
+    fprintf(stderr, "\aNo hay ninguna entrada de diaro!\n"
+                    "Intenta anadir uno primero!\n");
+    getchar();
+    return (void)login_menu();
 }

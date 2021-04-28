@@ -34,3 +34,10 @@ bool crear_nots();
  * 
  */
 void save_notas();
+
+/**
+ * @brief Editara la nota almacena en alguna estructura. Si no hay alguna
+ * estructura llena informara de ello.
+ * 
+ */
+void editar_notas();

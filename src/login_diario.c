@@ -169,15 +169,15 @@ int login_user()
 
 		return 0;
 
-	case 2: // Logearse.
+	case 2: //Es para Logearse.
 		for (size_t i = 3; i > 0;)
 		{
-			printf("\t\t\aHola! Estas actualmente en en el login. Ingresa tus "
-				   "credenciales para poder ingresar al sistema!\n\n");
+			printf("\t\t\aEstas actualmente en el login. digita tus "
+				   "datos para iniciar\n\n");
 
 			if (i != 3 && i >= 1)
-				printf("\t\t\aUps! Tus credenciales no aparecen en la base de datos.\n"
-					   "\t\aAsegurate de haber ingresado tus datos correctament. "
+				printf("\t\t\aUyyyyyy! Tus datos no se encuetran en la base de datos.\n"
+					   "\t\aAsegurate de haber ingresado tus datos correctamente. "
 					   "Intentos restantes: %zu \n\n",
 					   i);
 
@@ -230,7 +230,7 @@ void system_loading(int time)
 		{
 			fflush(stdout);
 			printf("Cargando.. %zu%% .\r", i); /* impresion de 
-			esencia con el nombre */
+			carga */
 		}
 		else
 			continue;

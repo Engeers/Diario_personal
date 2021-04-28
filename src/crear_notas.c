@@ -3,7 +3,7 @@
 #include <string.h>
 //#include <stdint.h>
 #ifdef __WIN32
-#include <windows.h> /* Windows dectetado. */
+#include <windows.h> /*se ha dectetado Windows. */
 #include <conio.h>
 #include <unistd.h>
 #endif //__WIN32
@@ -13,7 +13,7 @@
 #include <time.h>
 #define MAX 1000 // sera el maximo de caracteres soportados
 struct crear notas[MAX];
-char _temp = true;
+char _temp = true;//mis variables locales
 char temp;
 char titulo[100];
 char cuerpo[1000];
